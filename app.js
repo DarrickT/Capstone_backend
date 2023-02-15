@@ -1,5 +1,5 @@
 const express = require('express')
-
+require('dotenv').config()
 //import models
 const db = require('./models/index.js')
 

@@ -8,6 +8,8 @@ class UsersRouter {
 
   routes () {
     router.get('/test', this.controller.testRoute.bind(this.controller))
+    router.post('/signUp', this.controller.signUp.bind(this.controller))
+
     return router
   }
 }

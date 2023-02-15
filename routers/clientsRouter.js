@@ -8,6 +8,8 @@ class ClientsRouter {
 
   routes () {
     router.get('/test', this.controller.testRoute.bind(this.controller))
+    router.post('/addClient', this.controller.addClient.bind(this.controller))
+
     return router
   }
 }
