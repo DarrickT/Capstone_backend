@@ -26,6 +26,12 @@ class UsersController extends BaseCtonroller {
         password: hashedPassword
       })
 
+      {
+        //  "name": "Testing",
+        //  "email": "testing123@gmail.com",
+        //  "password": "Password"
+      }
+
       const payload = { id: newUser.id, name: newUser.name }
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '1hour'

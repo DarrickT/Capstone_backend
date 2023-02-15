@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 require('dotenv').config()
 //import models
 const db = require('./models/index.js')
@@ -21,6 +22,8 @@ const clientsRouter = new ClientsRouter(clientsController).routes()
 
 //Putting express together
 const app = express()
+app.use(cors())
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 

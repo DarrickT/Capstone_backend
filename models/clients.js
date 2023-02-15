@@ -9,24 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      this.belongsTo(models.users, { foreignKey: 'userId' })
+      // this.belongsTo(models.users, { foreignKey: 'userId' })
     }
   }
   clients.init(
     {
       fullName: { type: DataTypes.STRING, allowNull: false },
-      contact: { type: DataTypes.INTEGER, allowNull: false },
+      // contact: { type: DataTypes.INTEGER, allowNull: false },
       email: { type: DataTypes.STRING, allowNull: false },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
-      subscription_type: { type: DataTypes.INTEGER, allowNull: false },
-      amount_spent: { type: DataTypes.DECIMAL, allowNull: false }
+      date: { type: DataTypes.DATEONLY, allowNull: false },
+      // userId: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true,
+      //   references: {
+      //     model: 'users',
+      //     key: 'id'
+      //   }
+      // },
+      subscriptionType: { type: DataTypes.INTEGER, allowNull: false },
+      paymentAmount: { type: DataTypes.DECIMAL, allowNull: false }
     },
     {
       sequelize,

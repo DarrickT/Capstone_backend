@@ -5,37 +5,36 @@ class ClientsController extends BaseCtonroller {
   constructor (model) {
     super(model)
   }
-  async getAllClients (req, res) {
-    const { userId } = req.params
+  async getAllClients (_req, res) {
     try {
-      const allClients = await clients.findAll({
-        where: { user_id: userId }
+      const allClients = await this.model.findAll({
+        // where: { userId: userId }
       })
       res.status(200).json(allClients)
-    } catch (err) {
-      res.status(400).json({ err: err.message })
+    } catch (error) {
+      res.status(400).json({ error })
     }
   }
 
   //add new CLient
   async addClient (req, res) {
-    const {
-      fullName,
-      contact,
-      email,
-      subscription_type,
-      amount_spent,
-      userId
-    } = req.body
+    const { fullName, date, email, subscriptionType, paymentAmount } = req.body
+
+    //{
+    //   "fullName":"Testing",
+    //   "date":"2022/02/16",
+    //   "email":"testing@gmail.com",
+    //   "subscriptionType":3,
+    //   "paymentAmount":120.00,
+    // }
 
     try {
       const newClient = await this.model.create({
         fullName: fullName,
-        contact: contact,
+        date: date,
         email: email,
-        subscription_type: subscription_type,
-        amount_spent: amount_spent,
-        userId: userId
+        subscriptionType: subscriptionType,
+        paymentAmount: paymentAmount
       })
 
       res.status(200).json(newClient)
@@ -43,25 +42,46 @@ class ClientsController extends BaseCtonroller {
       res.status(400).json({ error })
     }
   }
-  // async editClient (req,res){
-  //   const {clientId} = req.params
-  //   const { fullName, contact, email, subscription_type, amount_spent } = req.body;
 
-  //   try {
-  //     let editedClient = await this.model.findByPk(clientId);
-  //     if(editedClient){
-  //       await editedClient.update({
-  //         fullName: fullName,
-  //         contact: contact,
-  //         email: email,
-  //         subscription_type: subscription_type,
-  //         amount_spent: amount_spent
+  //delete Client
+  async deleteClient (req, res) {
+    const { id } = req.params
+    const deletedClient = await this.model.findByPk(id)
+    if (!deletedClient) {
+      return res.status(404).json({ error: 'no such client exist' })
+    }
+    try {
+      await clients.destroy({
+        where: { id: id }
+      })
+      res.status(200).json(`Deleted client with id ${id}`)
+    } catch (error) {
+      res.status(400).json({ error })
+    }
+  }
 
-  //       })
-  //     }
-  //   }
+  async editClient (req, res) {
+    const { clientsId } = req.params
+    const { fullName, email, date, subscriptionType, paymentAmount } = req.body
 
-  // }
+    try {
+      let editedClient = await this.model.findByPk(clientsId)
+      if (editedClient) {
+        await editedClient.update({
+          fullName: fullName,
+          date: date,
+          email: email,
+          subscriptionType: subscriptionType,
+          paymentAmount: paymentAmount
+        })
+      }
+      editedClient = await this.model.findByPk(clientsId)
+      return res.json(editedClient)
+    } catch (error) {
+      console.log(error)
+      return res.status(400).json({ error })
+    }
+  }
 }
 
 module.exports = ClientsController

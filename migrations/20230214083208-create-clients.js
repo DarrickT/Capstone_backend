@@ -13,28 +13,32 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      contact: {
-        type: Sequelize.INTEGER,
+      date: {
+        type: Sequelize.DATE,
         allowNull: false
       },
+      // contact: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false
+      // },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
+      // user_id: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: 'users',
+      //     key: 'id'
+      //   }
+      // },
       subscription_type: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      amount_spent: {
+      payment_amount: {
         type: Sequelize.DECIMAL,
         allowNull: false
       },
