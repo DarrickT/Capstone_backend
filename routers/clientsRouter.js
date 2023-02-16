@@ -14,10 +14,13 @@ class ClientsRouter {
     )
     router.post('/addClient', this.controller.addClient.bind(this.controller))
     router.delete(
-      '/deleteClient',
+      '/deleteClient/:id',
       this.controller.deleteClient.bind(this.controller)
     )
-    router.put('/editClient', this.controller.editClient.bind(this.controller))
+    router.put(
+      '/editClient/:id',
+      this.controller.editClient.bind(this.controller)
+    )
     return router
   }
 }

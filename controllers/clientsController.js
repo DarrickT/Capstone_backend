@@ -45,24 +45,24 @@ class ClientsController extends BaseCtonroller {
 
   //delete Client
   async deleteClient (req, res) {
-    const { id } = req.params
-    const deletedClient = await this.model.findByPk(id)
+    let deletedClient = req.params.id
+    await this.model.findByPk(deletedClient)
     if (!deletedClient) {
       return res.status(404).json({ error: 'no such client exist' })
     }
     try {
-      await clients.destroy({
-        where: { id: id }
+      await this.model.destroy({
+        where: { deletedClient }
       })
-      res.status(200).json(`Deleted client with id ${id}`)
+      res.status(200).json(`Deleted client with id ${deletedClient}`)
     } catch (error) {
       res.status(400).json({ error })
     }
   }
 
   async editClient (req, res) {
-    const { clientsId } = req.params
     const { fullName, email, date, subscriptionType, paymentAmount } = req.body
+    let clientsId = req.params.id
 
     try {
       let editedClient = await this.model.findByPk(clientsId)
