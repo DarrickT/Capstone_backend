@@ -24,7 +24,7 @@ class ClientsController extends BaseCtonroller {
     //   "fullName":"Testing",
     //   "date":"2022/02/16",
     //   "email":"testing@gmail.com",
-    //   "subscriptionType":3,
+    //   "subscriptionType":"one time"
     //   "paymentAmount":120.00,
     // }
 

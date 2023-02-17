@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       //     key: 'id'
       //   }
       // },
-      subscriptionType: { type: DataTypes.INTEGER, allowNull: false },
+      subscriptionType: { type: DataTypes.STRING, allowNull: false },
       paymentAmount: { type: DataTypes.DECIMAL, allowNull: false }
     },
     {
