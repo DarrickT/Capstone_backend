@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DarrickT/capstone_backend.git"
+    "url": "git+https://github.com/vponkshe96/capstone-dashboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DarrickT/capstone_backend/issues"
+    "url": "https://github.com/vponkshe96/capstone-dashboard/issues"
   },
-  "homepage": "https://github.com/DarrickT/capstone_backend#readme",
+  "homepage": "https://github.com/vponkshe96/capstone-dashboard#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
